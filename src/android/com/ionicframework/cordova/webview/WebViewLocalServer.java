@@ -236,7 +236,7 @@ public class WebViewLocalServer {
 
   private WebResourceResponse handleLocalRequest(Uri uri, PathHandler handler) {
     String path = uri.getPath();
-    if (path.equals("/") || (!uri.getLastPathSegment().contains(".") && html5mode)) {
+    if (path.equals("/")) {
       InputStream stream;
       String launchURL = parser.getLaunchUrl();
       String launchFile = launchURL.substring(launchURL.lastIndexOf("/") + 1, launchURL.length());
