@@ -569,7 +569,11 @@ public class WebViewLocalServer {
         InputStream stream;
         try {
           if (url.getPath().startsWith("/_file_/")) {
-            stream = protocolHandler.openFile( url.getPath().replace("/_file_/", ""));
+            if (url.getPath().contains("content://")) {
+              stream = protocolHandler.openAsset(url.getPath(), "");
+            } else {
+              stream = protocolHandler.openFile( url.getPath().replace("/_file_/", ""));
+            }
           } else {
             stream = protocolHandler.openFile(basePath + url.getPath());
           }
